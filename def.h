@@ -11,6 +11,7 @@
  */
 
 #include	"chrdef.h"
+#include	"ansiterm.h"
 
 typedef int	(*PF)(int, int);	/* generally useful type */
 

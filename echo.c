@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <term.h>
+#include "ansiterm.h"
 
 #include "def.h"
 #include "funmap.h"
