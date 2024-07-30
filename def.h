@@ -12,6 +12,8 @@
 
 #include	"chrdef.h"
 #include	"ansiterm.h"
+#include	"netbsd.h"
+#include	"macos.h"
 
 typedef int	(*PF)(int, int);	/* generally useful type */
 
