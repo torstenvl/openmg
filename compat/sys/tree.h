@@ -216,7 +216,7 @@
             if (y->E.right != NULL) y->E.right->E.parent = z;      \
         }                                                          \
         if (y->E.color == BLACK) {                                 \
-            removeFixUp_##T(tree, x);                              \
+            if (x) removeFixUp_##T(tree, x);                       \
         }                                                          \
     }                                                              \
     static struct ST *min_##T(const struct T *tree) {              \
