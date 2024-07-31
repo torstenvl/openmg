@@ -8,10 +8,10 @@ SRC = *.c
 
 CC = cc
 
-RFLAGS = -std=c17 -Oz
+RFLAGS = -std=c17 -Oz -idirafter compat
 
 # For Clang/LLVM use the following
-DFLAGS = -std=c17 -O0 -gfull
+DFLAGS = -std=c17 -O0 -idirafter compat -gfull
 
 # For GCC use the following instead
 # DFLAGS = -std=c17 -Og -g3
