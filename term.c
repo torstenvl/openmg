@@ -146,7 +146,7 @@ char *
 tgoto(const char *cap, int col, int row)
 {
         static char buf[42];
-	char *p, *q, *fmt;
+        char *p, *q, *fmt;
         int *val, tmp;
 
         val = &row;
@@ -166,7 +166,7 @@ tgoto(const char *cap, int col, int row)
                 case '3':
                         fmt = "%03dX";
                 num:
-                        sprintf(q, fmt, *val);
+                        snprintf(q, (42 - 1 - (q-buf)), fmt, *val);
                         while (*q != 'X')
                                 q++;
                         val = &col;
