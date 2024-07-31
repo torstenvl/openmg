@@ -26,7 +26,7 @@
 #define TCSASOFT 0
 #endif
 
-#include "ansiterm.h"
+#include <term.h>
 #include "def.h"
 
 // #undef  STANDOUT_GLITCH		/* never, messes up modeline	 */

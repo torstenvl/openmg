@@ -8,14 +8,14 @@ SRC = *.c
 
 CC = cc
 
-RFLAGS = -std=c17 -Oz -idirafter compat
+RFLAGS = -std=c17 -Oz -Icompat
 
 # For Clang/LLVM use the following
-DFLAGS = -std=c17 -O0 -idirafter compat -gfull
+DFLAGS = -std=c17 -O0 -Icompat -gfull
 
 # For GCC use the following instead
 # DFLAGS = -std=c17 -Og -g3
-  
+
 SFLAGS = -W -Wall -Werror -Wno-unused-parameter -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wreturn-type -Wcast-qual -Wswitch -Wshadow -Wcast-align -Wwrite-strings -Wmisleading-indentation
 
 SSFLAGS = -Wunused-parameter -Wchar-subscripts -Winline -Wnested-externs -Wredundant-decls

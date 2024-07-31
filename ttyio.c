@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ansiterm.h"
+#include <term.h>
 #include <termios.h>
 #include <unistd.h>
 

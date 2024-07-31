@@ -11,7 +11,7 @@
  */
 
 #include	"chrdef.h"
-#include	"ansiterm.h"
+#include	<term.h>
 #include	"netbsd.h"
 #include	"macos.h"
 
@@ -327,7 +327,7 @@ SLIST_HEAD(vhead, varentry);
 /*
  * Previously from ttydef.h
  */
-#define STANDOUT_GLITCH			/* possible standout glitch	*/
+// #define STANDOUT_GLITCH			/* possible standout glitch	*/
 
 #define putpad(str, num)	tputs(str, num, ttputc)
 
