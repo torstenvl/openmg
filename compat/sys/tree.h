@@ -110,8 +110,10 @@
             int cmp = CMP(node, x);                                \
             if (cmp < 0) {                                         \
                 x = x->E.left;                                     \
-            } else {                                               \
+            } else if (cmp > 0) {                                  \
                 x = x->E.right;                                    \
+            } else {                                               \
+                return x;                                          \
             }                                                      \
         }                                                          \
         node->E.parent = y;                                        \
@@ -126,7 +128,7 @@
         node->E.right = NULL;                                      \
         node->E.color = RED;                                       \
         balanceInsert_##T(tree, node);                             \
-        return node;                                               \
+        return NULL;                                               \
     }                                                              \
     static void removeFixUp_##T(struct T *tree, struct ST *x) {    \
         while (x != tree->root && x->E.color == BLACK) {           \
