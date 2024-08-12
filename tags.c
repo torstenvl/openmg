@@ -368,9 +368,10 @@ addctag(char *s)
 
 	t->pat = strip(l, strlen(l));
 	if (RB_INSERT(tagtree, &tags, t) != NULL) {
-		return (TRUE);
+		free(t);
+		free(s);
 	}
-
+	return (TRUE);
 cleanup:
 	free(t);
 	free(s);
