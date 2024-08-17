@@ -168,32 +168,32 @@ This should probably look more like this (in order to accommodate the needs of
 different calls). 
 
     int 
-    getcolpos(const struct buffer *curbuffer, const struct line *curline, int target) {
+    getcolposexplicit(const struct buffer *bfr, const struct line *ln, int tgt) {
         int i = 0;
         int b = 0;
-        int column = 0;
+        int colpos = 0;
         char octbuf[5] = {0};
         char utf8buf[5] = {0};
         static const int utf8locale = (!!(!strcmp(".UTF-8", strrchr((setlocale(LC_ALL, ""), setlocale(LC_ALL, NULL)), '.'))));
     
-        for (i = 0; i < target; i++) {
+        for (i = 0; i < tgt; i++) {
     
-            b = lgetc(curline, i);
+            b = lgetc(ln, i);
     
             if (b == '\t') 
-                column = ntabstop(column, curbuffer->b_tabw);
+                colpos = ntabstop(colpos, bfr->b_tabw);
     
             else if (ISCTRL(b)) 
-                column = column + 2; /* strlen("^x") */
+                colpos = colpos + 2; /* strlen("^x") */
     
             else if (isprint(b)) 
-                column++;
+                colpos++;
     
             else 
-                column = column + snprintf(octbuf, sizeof(octbuf), "\\%o", b);
+                colpos = colpos + snprintf(octbuf, sizeof(octbuf), "\\%o", b);
     
         }
     
-        return column;	
+        return colpos;
     }
-    
+
