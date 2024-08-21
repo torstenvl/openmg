@@ -104,27 +104,36 @@ showcpos(int f, int n)
 int
 getcolpos(struct mgwin *wp)
 {
-	int	col, i, c;
-	char tmp[5];
-
-	/* determine column */
-	col = 0;
-
-	for (i = 0; i < wp->w_doto; ++i) {
-		c = lgetc(wp->w_dotp, i);
-		if (c == '\t') {
-			col = ntabstop(col, wp->w_bufp->b_tabw);
-		} else if (ISCTRL(c) != FALSE)
-			col += 2;
-		else if (isprint(c)) {
-			col++;
-		} else {
-			col += snprintf(tmp, sizeof(tmp), "\\%o", c);
-		}
-
-	}
+	int     col;
+	col = getcolposexplicit(wp->w_bufp, wp->w_dotp, wp->w_doto);
 	return (col);
 }
+
+
+int
+getcolposexplicit(const struct buffer *bfr, const struct line *ln, int tgt) {
+	int i = 0;
+	int byte = 0;
+	int colpos = 0;
+	char octal[5] = {0};
+
+	for (i = 0; i < tgt; i++) {
+		byte = lgetc(ln, i);
+
+		if (byte == '\t') {
+			colpos = ntabstop(colpos, bfr->b_tabw);
+		} else if (ISCTRL(byte)) {
+			colpos = colpos + 2; /* strlen("^x") */
+		} else if (isprint(byte)) {
+			colpos++;
+		} else {
+			colpos = colpos + snprintf(octal, sizeof(octal), "\\%o", byte);
+		}
+	}
+
+	return colpos;
+}
+
 
 /*
  * Twiddle the two characters in front of and under dot, then move forward

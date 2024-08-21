@@ -508,23 +508,7 @@ update(int modelinecolor)
 		++currow;
 		lp = lforw(lp);
 	}
-	curcol = 0;
-	i = 0;
-	while (i < curwp->w_doto) {
-		c = lgetc(lp, i++);
-		if (c == '\t') {
-			curcol = ntabstop(curcol, curwp->w_bufp->b_tabw);
-		} else if (ISCTRL(c) != FALSE)
-			curcol += 2;
-		else if (isprint(c))
-			curcol++;
-		else {
-			char bf[5];
-
-			snprintf(bf, sizeof(bf), "\\%o", c);
-			curcol += strlen(bf);
-		}
-	}
+	curcol = getcolposexplicit(curwp->w_bufp, lp, curwp->w_doto);
 	if (curcol >= ncol - 1) {	/* extended line. */
 		/* flag we are extended and changed */
 		vscreen[currow]->v_flag |= VFEXT | VFCHG;

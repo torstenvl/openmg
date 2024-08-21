@@ -550,6 +550,7 @@ int		 setlineno(int);
 int		 ntabstop(int, int);
 int		 showcpos(int, int);
 int		 getcolpos(struct mgwin *);
+int		 getcolposexplicit(const struct buffer *bfr, const struct line *ln, int tgt);
 int		 twiddle(int, int);
 int		 openline(int, int);
 int		 enewline(int, int);
